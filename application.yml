@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 8080
   ssl:
     enabled: true
     key-store: /certs/keystore.p12
@@ -15,12 +15,12 @@ spring:
   security:
     require-ssl: true
   session:
-    timeout: 15m
+    timeout: 45m
 
 logging:
   level:
-    root: INFO
-    com.company: WARN
+    root: DEBUG
+    com.company: DEBUG
 
 management:
   endpoints:
@@ -38,4 +38,4 @@ monitoring:
   health-check:
     enabled: true
   backup:
-    enabled: true
+    enabled: false
