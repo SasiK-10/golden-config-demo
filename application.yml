@@ -1,7 +1,7 @@
 server:
   port: 9090
   ssl:
-    enabled: true
+    enabled: false
     key-store: /certs/keystore.p12
     key-store-type: PKCS12
 
@@ -11,9 +11,10 @@ spring:
   datasource:
     url: jdbc:postgresql://prod-db.internal:5432/appdb
     username: app_user
-    ssl: true
+    password: supersecret123
+    ssl: false
   security:
-    require-ssl: true
+    require-ssl: false
   session:
     timeout: 15m
 
@@ -26,13 +27,13 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: "*"
   security:
-    enabled: true
+    enabled: false
 
 rate-limiting:
-  enabled: true
-  requests-per-minute: 100
+  enabled: false
+  requests-per-minute: 1000
 
 monitoring:
   health-check:
