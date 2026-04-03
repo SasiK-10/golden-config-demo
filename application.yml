@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9090
   ssl:
     enabled: true
     key-store: /certs/keystore.p12
@@ -7,32 +7,32 @@ server:
 
 spring:
   application:
-    name: golden-demo-service-v2
+    name: golden-demo-service
   datasource:
-    url: jdbc:postgresql://prod-db-replica.internal:5432/appdb
-    username: readonly_user
+    url: jdbc:postgresql://prod-db.internal:5432/appdb
+    username: app_user
     ssl: true
   security:
     require-ssl: true
   session:
-    timeout: 25m
+    timeout: 30m
 
 logging:
   level:
     root: INFO
-    com.company: INFO
+    com.company: WARN
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics
+        include: health,info
   security:
     enabled: true
 
 rate-limiting:
   enabled: true
-  requests-per-minute: 75
+  requests-per-minute: 100
 
 monitoring:
   health-check:
