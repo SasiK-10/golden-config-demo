@@ -15,7 +15,7 @@ spring:
   security:
     require-ssl: true
   session:
-    timeout: 30m
+    timeout: 15m
 
 logging:
   level:
