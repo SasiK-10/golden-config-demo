@@ -1,7 +1,7 @@
 server:
   port: 9090
   ssl:
-    enabled: false                          # BLOCK: SSL disabled in prod
+    enabled: true
     key-store: /certs/keystore.p12
     key-store-type: PKCS12
 
@@ -11,32 +11,31 @@ spring:
   datasource:
     url: jdbc:postgresql://prod-db.internal:5432/appdb
     username: app_user
-    password: supersecret123                # BLOCK: hardcoded secret
-    ssl: false                              # BLOCK: DB SSL off
+    ssl: true
   security:
-    require-ssl: false                      # BLOCK: security requirement removed
+    require-ssl: true
   session:
-    timeout: 60m                            # WARN: session longer than baseline
+    timeout: 15m
 
 logging:
   level:
-    root: DEBUG                             # WARN: DEBUG in prod is noisy
+    root: INFO
     com.company: WARN
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,env,beans      # WARN: env/beans expose internals
+        include: health,info
   security:
-    enabled: false                          # BLOCK: management endpoints unauthenticated
+    enabled: true
 
 rate-limiting:
-  enabled: false                            # BLOCK: rate limiting off
+  enabled: true
   requests-per-minute: 100
 
 monitoring:
   health-check:
     enabled: true
   backup:
-    enabled: false                          # WARN: backups disabled
+    enabled: true
