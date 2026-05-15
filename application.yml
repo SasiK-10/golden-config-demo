@@ -1,0 +1,41 @@
+server:
+  port: 9090
+  ssl:
+    enabled: true
+    key-store: /certs/keystore.p12
+    key-store-type: PKCS12
+
+spring:
+  application:
+    name: golden-demo-service
+  datasource:
+    url: jdbc:postgresql://prod-db.internal:5432/appdb
+    username: app_user
+    ssl: true
+  security:
+    require-ssl: true
+  session:
+    timeout: 15m
+
+logging:
+  level:
+    root: INFO
+    com.company: WARN
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  security:
+    enabled: true
+
+rate-limiting:
+  enabled: true
+  requests-per-minute: 150          # ← ONLY change: 100 → 150 (minor adjustment)
+
+monitoring:
+  health-check:
+    enabled: true
+  backup:
+    enabled: true
